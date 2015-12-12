@@ -22,9 +22,6 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='django participant off-study',
-    install_requires=[
-        'edc-base>=0.1',
-    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
