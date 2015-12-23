@@ -7,6 +7,7 @@ __pycache__/
 .pydevproject
 .project
 .settings
+requirements_dev.txt
 edc_offstudy/db.sqlite3
 test-*
 # Distribution / packaging
