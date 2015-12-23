@@ -1,5 +1,5 @@
 Django==1.6
-M2Crypto==0.22.3
+M2Crypto==0.22.5
 django-tastypie
 django_extensions
 django-simple-history
@@ -10,6 +10,16 @@ Unipath
 GitPython
 factory-boy
 pytz
+pyodbc
+pycups
 git+https://github.com/botswana-harvard/edc-base@develop#egg=edc-base
 git+https://github.com/botswana-harvard/edc-visit-tracking@develop#egg=edc-visit-tracking
+git+https://github.com/botswana-harvard/edc-visit-schedule@develop#egg=edc-visit-schedule
+git+https://github.com/botswana-harvard/edc-appointment@develop#egg=edc-appointment
+git+https://github.com/botswana-harvard/edc-consent@develop#egg=edc-consent
+git+https://github.com/botswana-harvard/edc-constants@develop#egg=edc-constants
+git+https://github.com/botswana-harvard/edc-device@develop#egg=edc-device
 git+https://github.com/botswana-harvard/edc@develop#egg=edc
+git+https://github.com/botswana-harvard/lis@develop#egg=lis
+git+https://github.com/erikvw/django-revision@develop#egg=django-revision
+
