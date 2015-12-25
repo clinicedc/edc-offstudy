@@ -11,23 +11,21 @@ See tests for more complete examples.
 edc_offstudy requires modules from `edc` and is only tested on PY2 Django 1.6
 
 ###Usage
-Declare an off study model and tell it what the visit model is:
+Declare an off study model:
 
-    class TestOffStudyModel(OffStudyModelMixin, BaseUuidModel):
-
-        VISIT_MODEL = TestVisitModel
-
-        registered_subject = models.OneToOneField(RegisteredSubject)
-
-        class Meta:
-          app_label = 'my_app'
+	class MyOffStudyModel(CrfModelMixin, OffStudyModelMixin, BaseUuidModel):
+	
+	    my_visit = models.OneToOneField(MyVisit)
+	
+	    class Meta:
+	        app_label = 'my_app'
 
 
 Declare your visit model and tell it what the off_study_model is:
 
-    class TestVisitModel(OffStudyMixin, MetaDataMixin, PreviousVisitMixin, BaseVisitTracking):
+    class MyVisit(OffStudyMixin, MetaDataMixin, PreviousVisitMixin, BaseVisitTracking):
 
-        off_study_model = ('edc_offstudy', 'TestOffStudyModel')
+        off_study_model = ('my_app', 'TestOffStudyModel')
 
         REQUIRES_PREVIOUS_VISIT = True
 
@@ -42,9 +40,9 @@ Declare your visit model and tell it what the off_study_model is:
 
 Declare your scheduled models
 
-    class ScheduledCrfOne(OffStudyMixin, MetaDataMixin, BaseUuidModel):
+    class ScheduledCrfOne(CrfModelMixin, OffStudyMixin, MetaDataMixin, BaseUuidModel):
 
-        off_study_model = ('edc_offstudy', 'TestOffStudyModel')
+        off_study_model = ('my_app', 'MyOffStudyModel')
     
         q1 = models.CharField()
         q2 = models.CharField()
