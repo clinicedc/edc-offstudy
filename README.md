@@ -23,11 +23,11 @@ Declare an off study model and tell it what the visit model is:
           app_label = 'my_app'
 
 
-Declare your visit model and tell it what the OFF_STUDY_MODEL is:
+Declare your visit model and tell it what the off_study_model is:
 
     class TestVisitModel(OffStudyMixin, MetaDataMixin, PreviousVisitMixin, BaseVisitTracking):
 
-        OFF_STUDY_MODEL = ('edc_offstudy', 'TestOffStudyModel')
+        off_study_model = ('edc_offstudy', 'TestOffStudyModel')
 
         REQUIRES_PREVIOUS_VISIT = True
 
@@ -44,7 +44,7 @@ Declare your scheduled models
 
     class ScheduledCrfOne(OffStudyMixin, MetaDataMixin, BaseUuidModel):
 
-        OFF_STUDY_MODEL = ('edc_offstudy', 'TestOffStudyModel')
+        off_study_model = ('edc_offstudy', 'TestOffStudyModel')
     
         q1 = models.CharField()
         q2 = models.CharField()
