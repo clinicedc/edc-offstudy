@@ -23,7 +23,7 @@ Declare an off study model:
 
 Declare your visit model and tell it what the off_study_model is:
 
-    class MyVisit(OffStudyMixin, MetaDataMixin, PreviousVisitMixin, BaseVisitTracking):
+    class MyVisit(OffStudyMixin, MetaDataMixin, PreviousVisitMixin, VisitTrackingModelMixin):
 
         off_study_model = ('my_app', 'TestOffStudyModel')
 
