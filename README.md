@@ -32,9 +32,6 @@ Declare your visit model and tell it what the off_study_model is:
         def get_subject_identifier(self):
             return self.appointment.registered_subject.subject_identifier
 
-        def custom_post_update_crf_meta_data(self):
-            pass
-
         class Meta:
             app_label = 'my_app'
 
