@@ -27,8 +27,6 @@ Declare your visit model and tell it what the off_study_model is:
 
         off_study_model = ('my_app', 'TestOffStudyModel')
 
-        REQUIRES_PREVIOUS_VISIT = True
-
         def get_subject_identifier(self):
             return self.appointment.registered_subject.subject_identifier
 
