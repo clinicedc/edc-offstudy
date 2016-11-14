@@ -1,5 +1,4 @@
-Django==1.6
-M2Crypto==0.22.3
+Django
 django-tastypie
 django_extensions
 python-dateutil
