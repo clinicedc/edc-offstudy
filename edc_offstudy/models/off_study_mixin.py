@@ -1,4 +1,5 @@
 from django.db import models
+from django.apps import apps as django_apps
 
 from ..constants import OFF_STUDY_REASONS
 
@@ -14,7 +15,7 @@ class OffStudyMixin(models.Model):
     off_study_model = None
 
     def save(self, *args, **kwargs):
-        self.is_off_study_or_raise()
+#         self.is_off_study_or_raise()
         super(OffStudyMixin, self).save(*args, **kwargs)
 
     def is_off_study_or_raise(self):
@@ -39,20 +40,27 @@ class OffStudyMixin(models.Model):
         self.is_off_study_on_previous_visit_or_raise()
         return off_study
 
+    @property
+    def offstudy_model_cls(self):
+        """Returns the off study model class.
+        """
+        app_name, model_name = self.off_study_model.split('.')
+        return django_apps.get_model(app_name, model_name)
+
     def has_off_study_report_or_raise(self, subject_identifier, report_date):
         """Raises an exception if an off study report exists for this subject with an
         off study date before the report_date."""
         options = {
-            '{}__appointment__registered_subject__subject_identifier'.format(self.off_study_model.visit_model_attr):
+            '{}__appointment__registered_subject__subject_identifier'.format(self.offstudy_model_cls.visit_model_attr):
             subject_identifier}
         try:
-            off_study = self.off_study_model.objects.get(
+            off_study = self.offstudy_model_cls.objects.get(
                 offstudy_date__lt=report_date,
                 **options)
             raise OffStudyError(
                 'Participant was reported off study on \'{0}\'. Data reported after this date'
                 ' cannot be captured.'.format(off_study.offstudy_date.strftime('%Y-%m-%d')))
-        except self.off_study_model.DoesNotExist:
+        except self.offstudy_model_cls.DoesNotExist:
             off_study = None
         return off_study
 
@@ -61,7 +69,7 @@ class OffStudyMixin(models.Model):
 
         The visit report is "previous" relative to this objects report_datetime."""
         try:
-            previous_off_study_visit = self.off_study_model.visit_model.objects.filter(
+            previous_off_study_visit = self.offstudy_model_cls.visit_model.objects.filter(
                 study_status=OFF_STUDY,
                 report_datetime__lt=self.report_datetime,
                 subject_identifier=self.get_subject_identifier()).order_by('report_datetime')
