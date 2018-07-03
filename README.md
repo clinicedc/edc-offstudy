@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/clinicedc/edc-offstudy.svg?branch=develop)](https://travis-ci.org/clinicedc/edc-offstudy)
+[![Build Status](https://travis-ci.com/clinicedc/edc-offstudy.svg?branch=develop)](https://travis-ci.com/clinicedc/edc-offstudy)
 [![Coverage Status](https://coveralls.io/repos/clinicedc/edc-offstudy/badge.svg)](https://coveralls.io/r/clinicedc/edc-offstudy)
 
 # edc-offstudy
