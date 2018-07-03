@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/botswana-harvard/edc-offstudy.svg?branch=develop)](https://travis-ci.org/botswana-harvard/edc-offstudy)
-[![Coverage Status](https://coveralls.io/repos/botswana-harvard/edc-offstudy/badge.svg)](https://coveralls.io/r/botswana-harvard/edc-offstudy)
+[![Build Status](https://travis-ci.org/clinicedc/edc-offstudy.svg?branch=develop)](https://travis-ci.org/clinicedc/edc-offstudy)
+[![Coverage Status](https://coveralls.io/repos/clinicedc/edc-offstudy/badge.svg)](https://coveralls.io/r/clinicedc/edc-offstudy)
 
 # edc-offstudy
 
@@ -7,42 +7,21 @@ Base classes for off study process
 
 See tests for more complete examples.
 
-###Note:
-edc_offstudy requires modules from `edc` and is only tested on PY2 Django 1.6
+The offstudy model is linked to scheduled models by the visit schedule.
 
-###Usage
-Declare an off study model:
-
-	class MyOffStudyModel(CrfModelMixin, OffStudyModelMixin, BaseUuidModel):
-	
-	    my_visit = models.OneToOneField(MyVisit)
-	
-	    class Meta:
-	        app_label = 'my_app'
+    # visit_schedule.py
+    ...
+    visit_schedule1 = VisitSchedule(
+        name='visit_schedule1',
+        offstudy_model='edc_appointment.subjectoffstudy',
+        ...)
+    ...
 
 
-Declare your visit model and tell it what the off_study_model is:
+Declare the offstudy model referenced in the visit schedule using the `OffstudyModelMixin`:
 
-    class MyVisit(OffStudyMixin, MetaDataMixin, PreviousVisitMixin, VisitModelMixin):
+    class SubjectOffstudy(OffstudyModelMixin, BaseUuidModel):
+        
+         pass
 
-        off_study_model = ('my_app', 'TestOffStudyModel')
 
-        def get_subject_identifier(self):
-            return self.appointment.registered_subject.subject_identifier
-
-        class Meta:
-            app_label = 'my_app'
-
-Declare your scheduled models
-
-    class ScheduledCrfOne(CrfModelMixin, OffStudyMixin, MetaDataMixin, BaseUuidModel):
-
-        off_study_model = ('my_app', 'MyOffStudyModel')
-    
-        q1 = models.CharField()
-        q2 = models.CharField()
-        q3 = models.CharField()
-
-        class Meta:
-            app_label = 'my_app'
-    
