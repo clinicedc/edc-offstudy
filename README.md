@@ -24,4 +24,8 @@ Declare the offstudy model referenced in the visit schedule using the `OffstudyM
         
          pass
 
+When the offstudy model is saved, the data is validated relative to the consent and visit model. An offstudy datetime should make sense relative to these models.
 
+Unused appointments in the future relative to the offstudy datetime will be removed.
+
+> Note: There is some redundancy with this model and the offschedule model from `edc-visit-schedule`. This needs to be resolved.
