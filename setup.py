@@ -31,6 +31,7 @@ setup(
         'edc-base',
         'edc_constants',
         'edc-identifier',
+        'edc-facility',
         'edc-model-fields',
         'edc-protocol',
         'edc-registration',
