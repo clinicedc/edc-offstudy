@@ -67,7 +67,7 @@ class TestOffstudy(TestCase):
             subject_identifier=self.subject_identifier, dob=dob
         )
 
-    @tag('4')
+    @tag("4")
     def test_offstudy_model(self):
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
@@ -81,7 +81,7 @@ class TestOffstudy(TestCase):
 
         self.assertTrue(str(obj))
 
-    @tag('4')
+    @tag("4")
     def test_offstudy_cls_subject_not_registered(self):
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
@@ -95,7 +95,7 @@ class TestOffstudy(TestCase):
             offstudy_datetime=self.consent_datetime - relativedelta(days=1),
         )
 
-    @tag('4')
+    @tag("4")
     def test_update_subject_visit_report_date_after_offstudy_date(self):
         appointments = Appointment.objects.filter(
             subject_identifier=self.subject_identifier
@@ -125,12 +125,11 @@ class TestOffstudy(TestCase):
             offstudy_reason=DEAD,
         )
 
-        subject_visit = SubjectVisit.objects.all().order_by('report_datetime').last()
-        subject_visit.report_datetime = subject_visit.report_datetime + \
-            relativedelta(years=1)
-        self.assertRaises(
-            OffstudyError,
-            subject_visit.save)
+        subject_visit = SubjectVisit.objects.all().order_by("report_datetime").last()
+        subject_visit.report_datetime = subject_visit.report_datetime + relativedelta(
+            years=1
+        )
+        self.assertRaises(OffstudyError, subject_visit.save)
 
     @tag("4")
     def test_crf_model_mixin(self):
@@ -171,8 +170,8 @@ class TestOffstudy(TestCase):
         # take off schedule1
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
-            offschedule_datetime=(
-                appointments[1].appt_datetime))
+            offschedule_datetime=(appointments[1].appt_datetime),
+        )
 
         # create complete off-study form for 1 hour after
         # first visit date
@@ -187,10 +186,9 @@ class TestOffstudy(TestCase):
         try:
             crf_one.save()
         except OffstudyError as e:
-            self.fail(f'OffstudyError unexpectedly raised. Got {e}')
+            self.fail(f"OffstudyError unexpectedly raised. Got {e}")
 
-        crf_one.report_datetime = (
-            crf_one.report_datetime + relativedelta(years=1))
+        crf_one.report_datetime = crf_one.report_datetime + relativedelta(years=1)
         self.assertRaises(OffstudyError, crf_one.save)
 
     @tag("4")
@@ -203,7 +201,8 @@ class TestOffstudy(TestCase):
         # take off schedule1
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
-            offschedule_datetime=self.consent_datetime + relativedelta(hours=1))
+            offschedule_datetime=self.consent_datetime + relativedelta(hours=1),
+        )
 
         SubjectOffstudy.objects.create(
             offstudy_datetime=self.consent_datetime + relativedelta(hours=1),
@@ -212,10 +211,11 @@ class TestOffstudy(TestCase):
         try:
             non_crf_one.save()
         except OffstudyError as e:
-            self.fail(f'OffstudyError unexpectedly raised. Got {e}')
+            self.fail(f"OffstudyError unexpectedly raised. Got {e}")
 
-        non_crf_one.report_datetime = (
-            non_crf_one.report_datetime + relativedelta(years=1))
+        non_crf_one.report_datetime = non_crf_one.report_datetime + relativedelta(
+            years=1
+        )
         self.assertRaises(OffstudyError, non_crf_one.save)
 
     @tag("4")
@@ -236,7 +236,8 @@ class TestOffstudy(TestCase):
         # take off schedule1
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
-            offschedule_datetime=self.consent_datetime + relativedelta(hours=1))
+            offschedule_datetime=self.consent_datetime + relativedelta(hours=1),
+        )
         form = SubjectOffstudyForm(data=data)
         self.assertTrue(form.is_valid())
 
@@ -249,13 +250,13 @@ class TestOffstudy(TestCase):
         )
         form = SubjectOffstudyForm(data=data)
         self.assertFalse(form.is_valid())
-        self.assertIn("Subject is on schedule on this date",
-                      str(form.errors))
+        self.assertIn("Subject is on schedule on this date", str(form.errors))
 
         # take off schedule1
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
-            offschedule_datetime=self.consent_datetime + relativedelta(hours=1))
+            offschedule_datetime=self.consent_datetime + relativedelta(hours=1),
+        )
 
         form = SubjectOffstudyForm(data=data)
         self.assertTrue(form.is_valid())
@@ -284,11 +285,11 @@ class TestOffstudy(TestCase):
         # take off schedule1
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
-            offschedule_datetime=appointments[0].appt_datetime + relativedelta(hours=1))
+            offschedule_datetime=appointments[0].appt_datetime + relativedelta(hours=1),
+        )
 
         SubjectOffstudy.objects.create(
-            offstudy_datetime=appointments[0].appt_datetime +
-            relativedelta(hours=1),
+            offstudy_datetime=appointments[0].appt_datetime + relativedelta(hours=1),
             subject_identifier=self.subject_identifier,
         )
         form = CrfOneForm(data=data)
@@ -296,7 +297,8 @@ class TestOffstudy(TestCase):
 
         data = dict(
             subject_visit=str(subject_visit.id),
-            report_datetime=appointments[0].appt_datetime + relativedelta(hours=2))
+            report_datetime=appointments[0].appt_datetime + relativedelta(hours=2),
+        )
         form = CrfOneForm(data=data)
         self.assertFalse(form.is_valid())
         self.assertIn("Report date comes after subject", str(form.errors))
@@ -306,26 +308,28 @@ class TestOffstudy(TestCase):
 
         data = dict(
             subject_identifier=self.subject_identifier,
-            report_datetime=self.consent_datetime)
+            report_datetime=self.consent_datetime,
+        )
         form = NonCrfOneForm(data=data)
         self.assertTrue(form.is_valid())
 
         # take off schedule1
         self.schedule1.take_off_schedule(
             subject_identifier=self.subject_identifier,
-            offschedule_datetime=self.consent_datetime + relativedelta(hours=1))
+            offschedule_datetime=self.consent_datetime + relativedelta(hours=1),
+        )
 
         SubjectOffstudy.objects.create(
             subject_identifier=self.subject_identifier,
-            offstudy_datetime=(
-                self.consent_datetime + relativedelta(hours=1)),
+            offstudy_datetime=(self.consent_datetime + relativedelta(hours=1)),
         )
         form = NonCrfOneForm(data=data)
         self.assertTrue(form.is_valid())
 
         data = dict(
             subject_identifier=self.subject_identifier,
-            report_datetime=self.consent_datetime + relativedelta(hours=2))
+            report_datetime=self.consent_datetime + relativedelta(hours=2),
+        )
         form = NonCrfOneForm(data=data)
         self.assertFalse(form.is_valid())
         self.assertIn("Report date comes after subject", str(form.errors))
@@ -334,8 +338,7 @@ class TestOffstudy(TestCase):
     def test_bad_non_crf_modelform(self):
         data = dict(
             subject_identifier=self.subject_identifier,
-            report_datetime=self.consent_datetime)
+            report_datetime=self.consent_datetime,
+        )
         form = BadNonCrfOneForm(data=data)
-        self.assertRaises(
-            ImproperlyConfigured,
-            form.is_valid)
+        self.assertRaises(ImproperlyConfigured, form.is_valid)

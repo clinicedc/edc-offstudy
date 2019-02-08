@@ -13,17 +13,19 @@ class OffstudyNonCrfModelMixin(models.Model):
     Requires fields "subject_identifier" and "report_datetime"
 
     """
+
     offstudy_model = None
 
     def save(self, *args, **kwargs):
         if not self.offstudy_model:
             raise ImproperlyConfigured(
-                f"Attribute offstudy_model not defined. See {repr(self)}.",
+                f"Attribute offstudy_model not defined. See {repr(self)}."
             )
         raise_if_offstudy(
             subject_identifier=self.subject_identifier,
             report_datetime=self.report_datetime,
-            offstudy_model_cls=django_apps.get_model(self.offstudy_model))
+            offstudy_model_cls=django_apps.get_model(self.offstudy_model),
+        )
         super().save(*args, **kwargs)
 
     class Meta:

@@ -55,7 +55,8 @@ class OffstudyModelMixin(UniqueSubjectIdentifierFieldMixin, models.Model):
     def save(self, *args, **kwargs):
         off_all_schedules_or_raise(
             subject_identifier=self.subject_identifier,
-            offstudy_datetime=self.offstudy_datetime)
+            offstudy_datetime=self.offstudy_datetime,
+        )
         super().save(*args, **kwargs)
 
     def natural_key(self):

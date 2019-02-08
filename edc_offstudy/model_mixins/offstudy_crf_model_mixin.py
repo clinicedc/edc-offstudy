@@ -18,7 +18,8 @@ class OffstudyCrfModelMixin(models.Model):
         raise_if_offstudy(
             subject_identifier=self.visit.subject_identifier,
             report_datetime=self.report_datetime,
-            offstudy_model_cls=self.visit.visit_schedule.offstudy_model_cls)
+            offstudy_model_cls=self.visit.visit_schedule.offstudy_model_cls,
+        )
         super().save(*args, **kwargs)
 
     class Meta:

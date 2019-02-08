@@ -16,7 +16,7 @@ def off_all_schedules_or_raise(subject_identifier=None, offstudy_datetime=None):
             try:
                 with transaction.atomic():
                     schedule.onschedule_model_cls.objects.get(
-                        subject_identifier=subject_identifier,
+                        subject_identifier=subject_identifier
                     )
             except ObjectDoesNotExist:
                 pass
@@ -24,13 +24,13 @@ def off_all_schedules_or_raise(subject_identifier=None, offstudy_datetime=None):
                 try:
                     with transaction.atomic():
                         schedule.offschedule_model_cls.objects.get(
-                            subject_identifier=subject_identifier,
+                            subject_identifier=subject_identifier
                         )
                 except ObjectDoesNotExist:
                     model_name = (
-                        schedule.offschedule_model_cls()._meta.verbose_name.title())
-                    offschedule_date = formatted_datetime(
-                        offstudy_datetime)
+                        schedule.offschedule_model_cls()._meta.verbose_name.title()
+                    )
+                    offschedule_date = formatted_datetime(offstudy_datetime)
                     raise OffstudyError(
                         f"Subject is on schedule on this date. See form "
                         f"'{model_name}'. "
@@ -41,7 +41,9 @@ def off_all_schedules_or_raise(subject_identifier=None, offstudy_datetime=None):
     return True
 
 
-def raise_if_offstudy(subject_identifier=None, report_datetime=None, offstudy_model_cls=None):
+def raise_if_offstudy(
+    subject_identifier=None, report_datetime=None, offstudy_model_cls=None
+):
     try:
         with transaction.atomic():
             offstudy_model_cls.objects.get(
@@ -55,4 +57,5 @@ def raise_if_offstudy(subject_identifier=None, report_datetime=None, offstudy_mo
         raise OffstudyError(
             f"Report date comes after subject's off-study date. "
             f"Got report_datetime={formatted_datetime(report_datetime)} "
-            f"See '{verbose_name.title()}'.")
+            f"See '{verbose_name.title()}'."
+        )

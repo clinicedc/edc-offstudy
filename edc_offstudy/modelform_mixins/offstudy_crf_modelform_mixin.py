@@ -15,7 +15,8 @@ class OffstudyCrfModelFormMixin(forms.ModelForm):
             raise_if_offstudy(
                 subject_identifier=visit.subject_identifier,
                 report_datetime=cleaned_data.get("report_datetime"),
-                offstudy_model_cls=visit.visit_schedule.offstudy_model_cls)
+                offstudy_model_cls=visit.visit_schedule.offstudy_model_cls,
+            )
         except OffstudyError as e:
             raise forms.ValidationError(f"{e}")
         return cleaned_data
