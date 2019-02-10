@@ -1,4 +1,4 @@
-|pypi| |travis| |coverage|
+|pypi| |travis| |codecov| |downloads|
 
 edc-offstudy
 ------------
@@ -54,5 +54,8 @@ Unused appointments in the future relative to the offstudy datetime will be remo
 .. |travis| image:: https://travis-ci.org/clinicedc/edc-offstudy.svg?branch=develop
     :target: https://travis-ci.org/clinicedc/edc-offstudy
     
-.. |coverage| image:: https://coveralls.io/repos/github/clinicedc/edc-offstudy/badge.svg?branch=develop
-    :target: https://coveralls.io/github/clinicedc/edc-offstudy?branch=develop
+.. |codecov| image:: https://codecov.io/gh/clinicedc/edc-offstudy/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/clinicedc/edc-offstudy
+
+.. |downloads| image:: https://pepy.tech/badge/edc-offstudy
+   :target: https://pepy.tech/project/edc-offstudy
