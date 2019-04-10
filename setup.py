@@ -34,7 +34,6 @@ setup(
     install_requires=[
         'django-collect-offline',
         'django-collect-offline-files',
-        'edc-base',
         'edc_constants',
         'edc-identifier',
         'edc-facility',
