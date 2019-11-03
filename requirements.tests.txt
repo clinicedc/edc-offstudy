@@ -3,3 +3,4 @@ edc-locator
 edc-consent
 model-mommy
 faker
+edc_randomization

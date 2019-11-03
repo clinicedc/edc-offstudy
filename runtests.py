@@ -31,6 +31,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'simple_history',
         'django_crypto_fields.apps.AppConfig',
         'edc_consent.apps.AppConfig',
+        'edc_randomization.apps.AppConfig',
         'edc_device.apps.AppConfig',
         'edc_timepoint.apps.AppConfig',
         'edc_protocol.apps.AppConfig',
@@ -39,13 +40,13 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'edc_lab.apps.AppConfig',
         'edc_identifier.apps.AppConfig',
         'edc_metadata.apps.AppConfig',
+        'edc_sites.apps.AppConfig',
         'edc_visit_tracking.apps.AppConfig',
         'edc_offstudy.apps.EdcAppointmentAppConfig',
         'edc_offstudy.apps.EdcFacilityAppConfig',
         'edc_offstudy.apps.AppConfig',
     ],
     add_dashboard_middleware=True,
-    add_subject_dasboard_middleware=True,
 ).settings
 
 
