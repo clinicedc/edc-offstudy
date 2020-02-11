@@ -1,6 +1,6 @@
 edc-appointment
 edc-locator
 edc-consent
-model-mommy
+model-bakery
 faker
 edc_randomization
