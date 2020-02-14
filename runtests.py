@@ -9,7 +9,6 @@ from django.test.runner import DiscoverRunner
 from edc_test_utils import DefaultTestSettings
 from os.path import abspath, dirname
 
-
 app_name = 'edc_offstudy'
 base_dir = dirname(abspath(__file__))
 
@@ -30,6 +29,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'django.contrib.sites',
         'simple_history',
         'django_crypto_fields.apps.AppConfig',
+        'edc_appointment.apps.AppConfig',
         'edc_consent.apps.AppConfig',
         'edc_randomization.apps.AppConfig',
         'edc_device.apps.AppConfig',
@@ -42,7 +42,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'edc_metadata.apps.AppConfig',
         'edc_sites.apps.AppConfig',
         'edc_visit_tracking.apps.AppConfig',
-        'edc_offstudy.apps.EdcAppointmentAppConfig',
         'edc_offstudy.apps.EdcFacilityAppConfig',
         'edc_offstudy.apps.AppConfig',
     ],
