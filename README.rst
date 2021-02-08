@@ -1,4 +1,4 @@
-|pypi| |travis| |codecov| |downloads|
+|pypi| |actions| |codecov| |downloads|
 
 edc-offstudy
 ------------
@@ -9,7 +9,7 @@ Base classes for off study process
 The offstudy model is linked to scheduled models by the visit schedule.
 
 .. code-block:: python
-    
+
     # visit_schedule.py
     ...
     visit_schedule1 = VisitSchedule(
@@ -24,15 +24,15 @@ This module includes an offstudy model ``SubjectOffstudy``.
 You may also declare your own using the ``OffstudyModelMixin``:
 
 .. code-block:: python
-    
+
     class SubjectOffstudy(OffstudyModelMixin, BaseUuidModel):
-        
+
          pass
-         
+
 If you declare your own, be sure to reference it correctly in the visit schedule:
 
 .. code-block:: python
-    
+
     # visit_schedule.py
     ...
     visit_schedule1 = VisitSchedule(
@@ -50,10 +50,10 @@ Unused appointments in the future relative to the offstudy datetime will be remo
 
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-offstudy.svg
     :target: https://pypi.python.org/pypi/edc-offstudy
-    
-.. |travis| image:: https://travis-ci.com/clinicedc/edc-offstudy.svg?branch=develop
-    :target: https://travis-ci.com/clinicedc/edc-offstudy
-    
+
+.. |actions| image:: https://github.com/clinicedc/edc-offstudy/workflows/build/badge.svg?branch=develop
+  :target: https://github.com/clinicedc/edc-offstudy/actions?query=workflow:build
+
 .. |codecov| image:: https://codecov.io/gh/clinicedc/edc-offstudy/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/clinicedc/edc-offstudy
 
