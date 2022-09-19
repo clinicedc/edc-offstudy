@@ -1,20 +1,16 @@
 #!/usr/bin/env python
 import logging
 import os
-import sys
 from os.path import abspath, dirname
 
-import django
 from dateutil.relativedelta import relativedelta
-from django.conf import settings
-from django.test.runner import DiscoverRunner
-from edc_test_utils import DefaultTestSettings
+from edc_test_utils import DefaultTestSettings, func_main
 from edc_utils import get_utcnow
 
 app_name = "edc_offstudy"
 base_dir = dirname(abspath(__file__))
 
-DEFAULT_SETTINGS = DefaultTestSettings(
+project_settings = DefaultTestSettings(
     calling_file=__file__,
     template_dirs=[os.path.join(base_dir, app_name, "tests", "templates")],
     BASE_DIR=base_dir,
@@ -60,11 +56,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
 
 
 def main():
-    if not settings.configured:
-        settings.configure(**DEFAULT_SETTINGS)
-    django.setup()
-    failures = DiscoverRunner(failfast=True).run_tests([f"{app_name}.tests"])
-    sys.exit(failures)
+    func_main(project_settings, f"{app_name}.tests")
 
 
 if __name__ == "__main__":
