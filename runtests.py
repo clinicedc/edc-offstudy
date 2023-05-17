@@ -35,6 +35,7 @@ project_settings = DefaultTestSettings(
         "edc_appointment.apps.AppConfig",
         "edc_consent.apps.AppConfig",
         "edc_crf.apps.AppConfig",
+        "edc_list_data.apps.AppConfig",
         "edc_notification.apps.AppConfig",
         "edc_randomization.apps.AppConfig",
         "edc_reference.apps.AppConfig",
