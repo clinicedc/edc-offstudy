@@ -51,8 +51,8 @@ Unused appointments in the future relative to the offstudy datetime will be remo
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-offstudy.svg
     :target: https://pypi.python.org/pypi/edc-offstudy
 
-.. |actions| image:: https://github.com/clinicedc/edc-offstudy/workflows/build/badge.svg?branch=develop
-  :target: https://github.com/clinicedc/edc-offstudy/actions?query=workflow:build
+.. |actions| image:: https://github.com/clinicedc/edc-offstudy/actions/workflows/build.yml/badge.svg
+  :target: https://github.com/clinicedc/edc-offstudy/actions/workflows/build.yml
 
 .. |codecov| image:: https://codecov.io/gh/clinicedc/edc-offstudy/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/clinicedc/edc-offstudy
